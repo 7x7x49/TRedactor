@@ -88,7 +88,7 @@ public class MainController implements Initializable {
         output.textProperty().addListener(((observable, oldValue, newValue) -> { // отловщик события изменения текста в поле для вывода
             if (skipOutputChangeEvent) {
                 skipOutputChangeEvent = false;
-                return; // скипаем его
+                return;
             }
             if (core.getAnalyzedRegions().size() > 0) { // если список проанализируемых регионов не пуст
                 core.getAnalyzedRegions().clear(); 
@@ -225,7 +225,7 @@ public class MainController implements Initializable {
     private void onOpenClick() {
         openButton.setDisable(true); 
         File file = new FileChooser().showOpenDialog(null); // открываем выбор файла
-        openButton.setDisable(false); // разлокируем кнопку открытия файла
+        openButton.setDisable(false); // разблокируем кнопку открытия файла
         if (file == null) return;
         try (BufferedReader br = new BufferedReader(new FileReader(file))) { 
             savePath = file.getParentFile(); 
@@ -258,7 +258,7 @@ public class MainController implements Initializable {
                 int countSentences = 0;
                 StringBuilder newText = new StringBuilder("\t");
                 for (String sentence : sentences) { // проходимся по каждому предложению
-                    countSentences++; // плюсуем в кол-во предложений
+                    countSentences++; // добавляем в кол-во предложений
                     if (countSentences > core.getSentencesInParagraph()) { // если кол-во предложений в абзаце, больше чем в настройке
                         countSentences = 0; // обнуляем кол-во
                         newText.append("\n\t").append(sentence).append(". "); // заносим текст с новым абзацем
